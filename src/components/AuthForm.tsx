@@ -3,7 +3,7 @@
 import { useState, FormEvent } from 'react'
 import { login, logon } from '@/firebase/auth'
 import { useRouter } from 'next/navigation'
-import styles from '@/styles/page.module.css'
+import styles from '@/styles/page.module.scss'
 
 export default function Home() {
   const [email, setEmail] = useState('')

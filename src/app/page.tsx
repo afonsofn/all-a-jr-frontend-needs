@@ -1,5 +1,5 @@
 import AuthForm from '@/components/AuthForm'
-import styles from '@/styles/page.module.css'
+import styles from '@/styles/page.module.scss'
 
 export default function Home() {
   return (
