@@ -20,7 +20,7 @@ const logout = async () => {
 
     useRouter().push("/");
   } catch (error) {
-    console.log(error);
+    exceptionsLogger(error, "pages/roadmap/logout");
   }
 };
 </script>

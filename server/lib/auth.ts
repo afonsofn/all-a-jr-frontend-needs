@@ -10,7 +10,7 @@ export const createUser = async (email: string, password: string) => {
   await createUserWithEmailAndPassword(firebaseAuth, email, password);
 };
 
-export const checkUser = () => {
+export const getUserInfo = () => {
   return firebaseAuth.currentUser;
 };
 

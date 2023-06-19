@@ -91,7 +91,7 @@ const loginForm = async (e: any) => {
 
     router.push("/roadmap");
   } catch (error) {
-    console.log(error);
+    exceptionsLogger(error, "components/AuthForm/loginForm");
   }
 };
 
@@ -109,7 +109,7 @@ const logonForm = async (e: any) => {
 
     router.push("/roadmap");
   } catch (error) {
-    console.log(error);
+    exceptionsLogger(error, "components/AuthForm/logonForm");
   }
 };
 </script>

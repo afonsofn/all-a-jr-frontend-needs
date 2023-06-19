@@ -20,7 +20,7 @@ try {
 
   content.value = welcomeContent;
 } catch (error) {
-  console.log(error);
+  exceptionsLogger(error, "components/WelcomeSection");
 }
 </script>
 

@@ -1,12 +1,12 @@
 import { getDocument } from "../lib/firestore";
-import { checkUser } from "../lib/auth";
+import { getUserInfo } from "../lib/auth";
 
 export default defineEventHandler(async (event) => {
   try {
     const { document, check } = getQuery(event);
 
     if (check) {
-      const user = checkUser();
+      const user = getUserInfo();
 
       return user;
     }
