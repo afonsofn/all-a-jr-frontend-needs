@@ -1,8 +1,9 @@
 <template>
-  <section>
+  <section class="roadmap-wrapper">
     <WelcomeSection />
+    <TerminalAndGitSection />
 
-    <button @click="logout">logout</button>
+    <button style="margin-top: 10rem" @click="logout">logout</button>
   </section>
 </template>
 
@@ -24,3 +25,11 @@ const logout = async () => {
   }
 };
 </script>
+
+<style scoped lang="scss">
+.roadmap-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+</style>
