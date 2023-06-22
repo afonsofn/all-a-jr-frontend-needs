@@ -11,27 +11,35 @@
 
 <style lang="scss">
 :root {
-  --font-primary: #c6c4d9;
+  --font-primary: #c0bed4;
   --font-secondary: #76738e;
-  --font-tertiary: #e7cb7f;
+  --font-tertiary: #b98501;
+
   --font-red: #bf4343;
   --font-green: #b5d750;
+
   --background-color: #232135;
   --background-color-secondary: #2d2a44;
   --background-color-tertiary: #393556;
-  /* --font-primary: #D9D9D9; // notion theme */
-  /* --background-color: #191919; // notion theme */
+
+  --main-font-weight: 300;
+  --quick-tip-shadow: 0 0 0 0 rgba(92, 92, 92, 0);
 }
 
 :root[data-theme="light"] {
-  --font-primary: #37352f;
+  --font-primary: #424242;
   --font-secondary: #76738e;
-  --font-tertiary: #e5c468;
+  --font-tertiary: #ffb800;
+
   --font-red: #eb5757;
   --font-green: #b5d750;
-  --background-color: #ffffff;
-  --background-color-secondary: #efefef;
+
+  --background-color: #fff;
+  --background-color-secondary: #fff9ea;
   --background-color-tertiary: #eeeeec;
+
+  --main-font-weight: 400;
+  --quick-tip-shadow: 3px 3px 15px 0 rgba(92, 92, 92, 0.1);
 }
 
 * {
@@ -42,11 +50,12 @@
 
 html,
 body {
-  font-family: "Work Sans";
+  font-family: "Inter";
   max-width: 100vw;
   overflow-x: hidden;
   font-size: 1rem;
   line-height: 1.4;
+  font-weight: var(--main-font-weight);
 }
 
 body {
@@ -68,15 +77,20 @@ header {
 }
 
 main {
-  max-width: 55rem;
+  max-width: 60rem;
   margin: 0 auto;
   padding: 0 5rem;
 }
 
 h1 {
-  font-size: 2.5rem;
-  font-weight: 700;
+  font-size: 2rem;
+  font-weight: 400;
   line-height: 1.2;
+  max-width: 70%;
+
+  strong {
+    font-weight: 700;
+  }
 }
 
 h2 {
@@ -85,14 +99,8 @@ h2 {
   line-height: 1.2;
 }
 
-h3 {
-  font-size: 1rem;
-  font-weight: 600;
-  line-height: 1.2;
-}
-
 blockquote {
-  border-left: 3px solid var(--font-primary);
+  border-left: 0.125rem solid var(--font-primary);
   padding-left: 1rem;
 }
 
@@ -102,14 +110,32 @@ strong {
 
 code {
   color: var(--font-red);
-  font-weight: 600;
+  font-weight: 500;
   padding: 0 0.5rem;
   border-radius: 0.3rem;
   background-color: var(--background-color-tertiary);
 }
 
-ol,
 ul {
+  padding-left: 0.4rem;
+  li {
+    position: relative;
+    padding-left: 1.4rem;
+    margin-bottom: 0.3rem;
+    list-style: none;
+
+    &:before {
+      content: "⏺";
+      position: absolute;
+      top: 4px;
+      left: 0;
+      font-size: 0.7rem;
+      color: #5c80ff;
+    }
+  }
+}
+
+ol {
   padding-left: 1.5rem;
   li {
     margin-bottom: 0.3rem;
@@ -130,11 +156,11 @@ ul {
 
   .command {
     color: var(--font-red);
-    font-weight: 600;
+    font-weight: 500;
   }
   .string {
     color: var(--font-green);
-    font-weight: 600;
+    font-weight: 400;
   }
 }
 

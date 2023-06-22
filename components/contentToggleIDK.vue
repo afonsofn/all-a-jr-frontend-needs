@@ -1,15 +1,15 @@
 <template>
   <div>
-    <h3 @click="open = !open">
+    <p @click="open = !open">
       ＜<slot name="title"></slot>＞...<template v-if="!open"
         >＜/<slot name="title"></slot>＞</template
       >
-    </h3>
+    </p>
 
     <div v-if="open">
       <slot />
     </div>
-    <h3 v-if="open">＜/<slot name="title"></slot>＞</h3>
+    <p v-if="open">＜/<slot name="title"></slot>＞</p>
   </div>
 </template>
 
@@ -18,7 +18,7 @@ const open = ref(false);
 </script>
 
 <style lang="scss" scoped>
-h3 {
+p {
   cursor: pointer;
 }
 </style>

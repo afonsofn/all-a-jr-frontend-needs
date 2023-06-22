@@ -1,6 +1,6 @@
 <template>
   <section>
-    <h1>{{ content.title }}</h1>
+    <h1 v-safe-html="content.title"></h1>
 
     <blockquote>{{ content.description }}</blockquote>
 
@@ -24,10 +24,15 @@ try {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 section {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+  h1 {
+    margin-bottom: 2.5rem;
+  }
+
+  blockquote {
+    margin-bottom: 1.5rem;
+    line-height: 1.3rem;
+  }
 }
 </style>

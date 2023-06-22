@@ -30,6 +30,6 @@ const logout = async () => {
 .roadmap-wrapper {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 2rem;
 }
 </style>

@@ -5,19 +5,20 @@
 
       <ContentToggle v-for="(data, index) in content" :key="index">
         <template #title>{{ data.title }}</template>
+        <ul>
+          <template v-for="(item, itemIndex) in data.steps" :key="itemIndex">
+            <li
+              v-if="itemIndex !== data.steps.length - 1"
+              v-safe-html="item"
+            ></li>
 
-        <template v-for="(item, itemIndex) in data.steps" :key="itemIndex">
-          <li
-            v-if="itemIndex !== data.steps.length - 1"
-            v-safe-html="item"
-          ></li>
+            <ContentToggle v-else>
+              <template #title>Resumo</template>
 
-          <ContentToggle v-else>
-            <template #title>Resumo</template>
-
-            <p v-safe-html="item"></p>
-          </ContentToggle>
-        </template>
+              <p v-safe-html="item"></p>
+            </ContentToggle>
+          </template>
+        </ul>
 
         <template v-for="(item, itemIndex) in data.exercises" :key="itemIndex">
           <ContentToggle>

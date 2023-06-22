@@ -16,9 +16,9 @@ export default defineNuxtConfig({
       "@nuxtjs/google-fonts",
       {
         families: {
-          "Work+Sans": {
-            wght: [400, 600, 700],
-            ital: [400],
+          Inter: {
+            wght: [300, 400, 500, 600, 700],
+            ital: [300],
           },
           download: true,
           inject: true,

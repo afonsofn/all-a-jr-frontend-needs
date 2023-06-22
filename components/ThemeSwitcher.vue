@@ -30,7 +30,7 @@ const toggleTheme = () => {
   --gray-65: #cdd1d5;
   --gray-70: #c6c4d9;
   --gray-95: #dddce3;
-  --withe: #ffffff;
+  --withe: #fff;
   --animate: 200ms;
 }
 .load-flash {
