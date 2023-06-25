@@ -1,11 +1,16 @@
-<!-- eslint-disable vue/no-multiple-template-root -->
 <template>
-  <header>
-    <ThemeSwitcher />
-  </header>
-
   <main>
-    <slot />
+    <TheSidebar />
+
+    <div class="content-wrapper">
+      <header>
+        <ThemeSwitcher />
+      </header>
+
+      <div class="main-content">
+        <slot />
+      </div>
+    </div>
   </main>
 </template>
 
@@ -20,7 +25,6 @@
 
   --background-color: #232135;
   --background-color-secondary: #2d2a44;
-  --background-color-tertiary: #393556;
 
   --main-font-weight: 300;
   --quick-tip-shadow: 0 0 0 0 rgba(92, 92, 92, 0);
@@ -35,11 +39,10 @@
   --font-green: #b5d750;
 
   --background-color: #fff;
-  --background-color-secondary: #fff9ea;
-  --background-color-tertiary: #eeeeec;
+  --background-color-secondary: #f5f5f5;
 
   --main-font-weight: 400;
-  --quick-tip-shadow: 3px 3px 15px 0 rgba(92, 92, 92, 0.1);
+  --quick-tip-shadow: 3px 3px 15px 0 rgba(92, 92, 92, 0.143);
 }
 
 * {
@@ -68,18 +71,45 @@ a {
   text-decoration: none;
 }
 
-header {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-
-  padding: 1rem;
-}
-
 main {
-  max-width: 60rem;
-  margin: 0 auto;
-  padding: 0 5rem;
+  display: flex;
+
+  .content-wrapper {
+    flex: 1;
+
+    header {
+      width: 100vw;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding: 1rem;
+    }
+
+    .main-content {
+      width: 100vw;
+      max-width: 60rem;
+      margin: 0 auto;
+      padding: 0 5rem;
+    }
+
+    @media (max-width: 1050px) {
+      header {
+        z-index: 998;
+        background-image: linear-gradient(
+          to bottom,
+          var(--background-color),
+          rgba(0, 0, 0, 0)
+        );
+        backdrop-filter: blur(1px);
+        position: fixed;
+        padding: 1rem 1.5rem;
+      }
+
+      .main-content {
+        padding: 4.1rem 5rem;
+      }
+    }
+  }
 }
 
 h1 {
@@ -87,9 +117,14 @@ h1 {
   font-weight: 400;
   line-height: 1.2;
   max-width: 70%;
+  margin-bottom: 2.5rem;
 
   strong {
     font-weight: 700;
+  }
+
+  @media (max-width: 826px) {
+    max-width: 100%;
   }
 }
 
@@ -161,6 +196,50 @@ ol {
   .string {
     color: var(--font-green);
     font-weight: 400;
+  }
+}
+
+svg {
+  width: 0.85rem;
+  height: 0.85rem;
+  margin: 0 0.8rem 0 0.1rem;
+  fill: var(--font-primary);
+
+  &.open {
+    animation: open-toggle 0.15s linear forwards;
+  }
+  &.close {
+    animation: close-toggle 0.15s linear forwards;
+  }
+}
+
+@media (max-width: 620px) {
+  main > .content-wrapper > .main-content {
+    padding: 4.1rem 1.5rem;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+}
+
+// Animations
+@keyframes open-toggle {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(90deg);
+  }
+}
+
+@keyframes close-toggle {
+  from {
+    transform: rotate(90deg);
+  }
+  to {
+    transform: rotate(0deg);
   }
 }
 

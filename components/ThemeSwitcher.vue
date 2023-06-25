@@ -131,4 +131,39 @@ const toggleTheme = () => {
   -moz-user-select: none;
   -webkit-user-select: none;
 }
+
+@media (max-width: 620px) {
+  .toggle-switch {
+    width: 38.4px;
+    height: 22.4px;
+    border-radius: 11.2px;
+  }
+  .toggle-wrapper.dark .toggle-switch {
+    width: 38.4px;
+  }
+  .toggle-switch:before {
+    top: 3.2px;
+    left: 19.2px;
+    width: 16px;
+    height: 16px;
+    border-radius: 9.6px;
+  }
+  .toggle-wrapper.dark .toggle-switch:before {
+    left: 3.2px;
+  }
+  .toggle-switch:after {
+    top: 11.2px;
+    right: 1.6px;
+    width: 0.8px;
+    height: 0.8px;
+    border-radius: 0.5px;
+  }
+  .toggle-wrapper.dark .toggle-switch:after {
+    top: -1.6px;
+    right: 1.6px;
+    width: 25.6px;
+    height: 25.6px;
+    border-radius: 12.8px;
+  }
+}
 </style>

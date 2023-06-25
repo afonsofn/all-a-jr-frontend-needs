@@ -32,4 +32,10 @@ const logout = async () => {
   flex-direction: column;
   gap: 2rem;
 }
+
+@media (max-width: 620px) {
+  .roadmap-wrapper {
+    gap: 1rem;
+  }
+}
 </style>

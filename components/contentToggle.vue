@@ -1,7 +1,7 @@
 <template>
   <div>
     <p @click="openToggle()">
-      <IconsChevronRight :class="turnIcon" />
+      <ChevronRight :class="turnIcon" />
       <slot name="title"></slot>
     </p>
 
@@ -12,7 +12,9 @@
 </template>
 
 <script setup lang="ts">
-const open = ref(false);
+import { ChevronRight } from "@/icons";
+
+const open = ref(true);
 const turnIcon = ref("");
 
 const openToggle = () => {
@@ -26,20 +28,6 @@ p {
   cursor: pointer;
   display: flex;
   align-items: center;
-
-  svg {
-    width: 0.85rem;
-    height: 0.85rem;
-    margin: 0 0.8rem 0 0.1rem;
-    fill: var(--font-primary);
-
-    &.open {
-      animation: open-toggle 0.15s linear forwards;
-    }
-    &.close {
-      animation: close-toggle 0.15s linear forwards;
-    }
-  }
 }
 
 .content {
@@ -51,21 +39,9 @@ p {
   gap: 0.5rem;
 }
 
-@keyframes open-toggle {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(90deg);
-  }
-}
-
-@keyframes close-toggle {
-  from {
-    transform: rotate(90deg);
-  }
-  to {
-    transform: rotate(0deg);
+@media (max-width: 620px) {
+  .content {
+    margin-left: 1rem;
   }
 }
 </style>

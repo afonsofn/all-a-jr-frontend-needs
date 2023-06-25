@@ -25,14 +25,8 @@ try {
 </script>
 
 <style scoped lang="scss">
-section {
-  h1 {
-    margin-bottom: 2.5rem;
-  }
-
-  blockquote {
-    margin-bottom: 1.5rem;
-    line-height: 1.3rem;
-  }
+section > blockquote {
+  margin-bottom: 1.5rem;
+  line-height: 1.3rem;
 }
 </style>
