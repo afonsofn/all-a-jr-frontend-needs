@@ -2,6 +2,7 @@
   <section class="roadmap-wrapper">
     <WelcomeSection />
     <TerminalAndGitSection />
+    <HtmlAndCssSection />
 
     <button style="margin-top: 10rem" @click="logout">logout</button>
   </section>

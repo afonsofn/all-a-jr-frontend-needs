@@ -14,7 +14,7 @@
 <script setup lang="ts">
 import { ChevronRight } from "@/icons";
 
-const open = ref(true);
+const open = ref(false);
 const turnIcon = ref("");
 
 const openToggle = () => {

@@ -2,20 +2,27 @@
   <section class="terminal-and-git-wrapper">
     <h2>Terminal e Git</h2>
 
-    <TerminalSection :content="content.terminal" />
-    <GitSection :content="content.terminal" />
+    <TerminalAndGitContent
+      v-for="(content, index) in terminalAndGitContent"
+      :key="index"
+      :content="content"
+    />
   </section>
 </template>
 
 <script setup lang="ts">
-const content = ref<any>(null);
+import { TerminalAndGitLessons } from "@/types/index";
+
+const terminalAndGitContent = ref<TerminalAndGitLessons>();
 
 try {
-  const terminalAndGitContent = await $fetch(
-    "http://localhost:3000/api/content?document=terminalAndGit"
-  );
+  const response = await $fetch("http://localhost:3000/api/content", {
+    params: {
+      document: "terminalAndGit",
+    },
+  });
 
-  content.value = terminalAndGitContent;
+  terminalAndGitContent.value = response as TerminalAndGitLessons;
 } catch (error) {
   exceptionsLogger(error, "components/terminalAndGitSection");
 }

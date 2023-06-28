@@ -1,10 +1,12 @@
 <template>
   <section>
-    <p @click="open = !open">💡 Dica Importante</p>
+    <p @click="open = !open">💡 Dicas Importantes</p>
 
-    <div v-if="open" :class="{ 'fade-in': !open }">
-      <i><slot /></i>
-    </div>
+    <transition>
+      <div v-if="open">
+        <i><slot /></i>
+      </div>
+    </transition>
   </section>
 </template>
 
@@ -26,17 +28,7 @@ section {
     background-color: var(--background-color-secondary);
     padding: 0.5rem 1rem;
     border-radius: 0.3rem;
-    animation: fade-in 0.4s ease-in-out forwards;
-    box-shadow: var(--quick-tip-shadow);
-  }
-
-  @keyframes fade-in {
-    0% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 1;
-    }
+    box-shadow: var(--important-tips-shadow);
   }
 }
 </style>

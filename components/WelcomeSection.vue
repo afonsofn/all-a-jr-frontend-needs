@@ -1,24 +1,28 @@
 <template>
-  <section>
-    <h1 v-safe-html="content.title"></h1>
+  <section v-if="welcomeContent">
+    <h1 v-safe-html="welcomeContent.title"></h1>
 
-    <blockquote>{{ content.description }}</blockquote>
+    <blockquote>{{ welcomeContent.description }}</blockquote>
 
-    <QuickTip>
-      {{ content.quickTip }}
-    </QuickTip>
+    <ImportantTips>
+      <p v-safe-html="welcomeContent.importantTips"></p>
+    </ImportantTips>
   </section>
 </template>
 
 <script setup lang="ts">
-const content = ref<any>(null);
+import { WelcomeContent } from "@/types/index";
+
+const welcomeContent = ref<WelcomeContent>();
 
 try {
-  const welcomeContent = await $fetch(
-    "http://localhost:3000/api/content?document=header"
-  );
+  const response = await $fetch("http://localhost:3000/api/content", {
+    params: {
+      document: "welcome",
+    },
+  });
 
-  content.value = welcomeContent;
+  welcomeContent.value = response as WelcomeContent;
 } catch (error) {
   exceptionsLogger(error, "components/WelcomeSection");
 }

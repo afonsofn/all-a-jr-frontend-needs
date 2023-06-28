@@ -1,7 +1,7 @@
 <template>
   <MenuIcon class="mobile-menu" @click="openNav = true" />
 
-  <transition>
+  <transition name="slide">
     <nav v-if="openNav">
       <div class="links-wrapper">
         <div
@@ -162,16 +162,6 @@ nav {
     height: 1.3rem;
     cursor: pointer;
   }
-}
-
-.v-enter-active,
-.v-leave-active {
-  transition: all 0.3s ease;
-}
-
-.v-enter-from,
-.v-leave-to {
-  transform: translateX(-100%);
 }
 
 @media (max-width: 1050px) {

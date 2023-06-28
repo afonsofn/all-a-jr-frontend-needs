@@ -25,9 +25,10 @@
 
   --background-color: #232135;
   --background-color-secondary: #2d2a44;
+  --background-color-tertiary: #393556;
 
   --main-font-weight: 300;
-  --quick-tip-shadow: 0 0 0 0 rgba(92, 92, 92, 0);
+  --important-tips-shadow: 0 0 0 0 rgba(92, 92, 92, 0);
 }
 
 :root[data-theme="light"] {
@@ -40,9 +41,10 @@
 
   --background-color: #fff;
   --background-color-secondary: #f5f5f5;
+  --background-color-tertiary: #eeeeec;
 
   --main-font-weight: 400;
-  --quick-tip-shadow: 3px 3px 15px 0 rgba(92, 92, 92, 0.143);
+  --important-tips-shadow: 3px 3px 15px 0 rgba(92, 92, 92, 0.143);
 }
 
 * {
@@ -151,22 +153,20 @@ code {
   background-color: var(--background-color-tertiary);
 }
 
-ul {
-  padding-left: 0.4rem;
-  li {
-    position: relative;
-    padding-left: 1.4rem;
-    margin-bottom: 0.3rem;
-    list-style: none;
+ul > li {
+  position: relative;
+  padding-left: 1.4rem;
+  margin-left: 0.4rem;
+  margin-bottom: 0.3rem;
+  list-style: none;
 
-    &:before {
-      content: "⏺";
-      position: absolute;
-      top: 4px;
-      left: 0;
-      font-size: 0.7rem;
-      color: #5c80ff;
-    }
+  &:before {
+    content: "⏺";
+    position: absolute;
+    top: 4px;
+    left: 0;
+    font-size: 0.7rem;
+    color: #5c80ff;
   }
 }
 
@@ -241,6 +241,26 @@ svg {
   to {
     transform: rotate(0deg);
   }
+}
+
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.4s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+}
+
+.slide-enter-active,
+.slide-leave-active {
+  transition: all 0.3s ease;
+}
+
+.slide-enter-from,
+.slide-leave-to {
+  transform: translateX(-100%);
 }
 
 // Scrollbar Style
