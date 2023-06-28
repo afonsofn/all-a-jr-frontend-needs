@@ -1,20 +1,23 @@
 <template>
   <MenuIcon class="mobile-menu" @click="openNav = true" />
 
-  <nav :class="{ open: openNav }">
-    <div class="links-wrapper">
-      <div
-        v-for="{ name, icon } in sections"
-        :key="name"
-        :class="{ selected: selectedSection === name }"
-        @click="selectSection(name)"
-      >
-        <component :is="icon" />
+  <transition>
+    <nav v-if="openNav">
+      <div class="links-wrapper">
+        <div
+          v-for="{ name, icon } in sections"
+          :key="name"
+          :class="{ selected: selectedSection === name }"
+          @click="selectSection(name)"
+        >
+          <component :is="icon" />
+          <p>{{ name }}</p>
+        </div>
       </div>
-    </div>
 
-    <DoubleChevronLeft class="close-mobile-menu" @click="openNav = false" />
-  </nav>
+      <DoubleChevronLeft class="close-mobile-menu" @click="openNav = false" />
+    </nav>
+  </transition>
 </template>
 
 <script setup lang="ts">
@@ -31,18 +34,40 @@ import {
 } from "@/icons";
 
 const openNav = ref(false);
-const selectedSection = ref("welcome");
+const selectedSection = ref("Bem Vindo");
 const sections = [
-  { name: "welcome", icon: WelcomeIcon },
-  { name: "terminal", icon: TerminalIcon },
-  { name: "html", icon: HtmlIcon },
-  { name: "javascript", icon: JavascriptIcon },
-  { name: "css", icon: CssIcon },
-  { name: "react", icon: ReactIcon },
-  { name: "next", icon: NextStepsIcon },
+  { name: "Bem Vindo", icon: WelcomeIcon },
+  { name: "Terminal e Git", icon: TerminalIcon },
+  { name: "Html e Css", icon: HtmlIcon },
+  { name: "Javascript", icon: JavascriptIcon },
+  { name: "Css Avançado", icon: CssIcon },
+  { name: "React e TypeScript", icon: ReactIcon },
+  { name: "Próximos Passos...", icon: NextStepsIcon },
 ];
 
-const selectSection = (section: string) => (selectedSection.value = section);
+const selectSection = (section: string) => {
+  selectedSection.value = section;
+
+  if (window.innerWidth > 1050) return;
+
+  setTimeout(() => (openNav.value = false), 100);
+};
+
+onMounted(() => {
+  const mediaQueryWatcher = window.matchMedia("(min-width: 1050px)");
+
+  function handleWindowResize(event: MediaQueryListEvent) {
+    openNav.value = event.matches;
+  }
+
+  mediaQueryWatcher.addEventListener("change", handleWindowResize);
+
+  handleWindowResize(mediaQueryWatcher as unknown as MediaQueryListEvent);
+
+  onUnmounted(() =>
+    mediaQueryWatcher.removeEventListener("change", handleWindowResize)
+  );
+});
 </script>
 
 <style lang="scss" scoped>
@@ -82,6 +107,21 @@ nav {
       padding: 0.6rem 1rem;
       margin-bottom: 0.3rem;
       cursor: pointer;
+
+      p {
+        display: none;
+        position: absolute;
+        width: 200%;
+        left: 120%;
+        font-size: 0.8rem;
+        color: var(--font-secondary);
+      }
+
+      &:hover {
+        p {
+          display: block;
+        }
+      }
 
       &.selected {
         background-color: var(--background-color);
@@ -124,26 +164,19 @@ nav {
   }
 }
 
+.v-enter-active,
+.v-leave-active {
+  transition: all 0.3s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  transform: translateX(-100%);
+}
+
 @media (max-width: 1050px) {
   .mobile-menu {
     display: block;
-
-    &.open {
-      display: block;
-    }
-  }
-
-  nav {
-    display: none;
-    width: 6rem;
-
-    .links-wrapper > div {
-      padding: 0.7rem 1rem;
-    }
-
-    &.open {
-      display: flex;
-    }
   }
 
   .close-mobile-menu {
