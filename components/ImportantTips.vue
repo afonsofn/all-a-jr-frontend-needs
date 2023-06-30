@@ -3,7 +3,7 @@
     <p @click="open = !open">💡 Dicas Importantes</p>
 
     <transition>
-      <div v-if="open">
+      <div v-if="open" class="tip-box">
         <i><slot /></i>
       </div>
     </transition>
@@ -22,13 +22,8 @@ section {
     cursor: pointer;
   }
 
-  div {
+  .tip-box {
     margin-top: 1.5rem;
-    line-height: 1.3rem;
-    background-color: var(--background-color-secondary);
-    padding: 0.5rem 1rem;
-    border-radius: 0.3rem;
-    box-shadow: var(--important-tips-shadow);
   }
 }
 </style>

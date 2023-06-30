@@ -3,6 +3,7 @@
     <WelcomeSection />
     <TerminalAndGitSection />
     <HtmlAndCssSection />
+    <JavascriptSection />
 
     <button style="margin-top: 10rem" @click="logout">logout</button>
   </section>

@@ -199,6 +199,14 @@ ol {
   }
 }
 
+.tip-box {
+  line-height: 1.3rem;
+  background-color: var(--background-color-secondary);
+  padding: 1rem;
+  border-radius: 0.3rem;
+  box-shadow: var(--important-tips-shadow);
+}
+
 svg {
   width: 0.85rem;
   height: 0.85rem;
