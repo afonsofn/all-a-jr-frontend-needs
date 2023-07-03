@@ -148,7 +148,7 @@ strong {
 code {
   color: var(--font-red);
   font-weight: 500;
-  padding: 0 0.5rem;
+  padding: 0.1rem 0.5rem;
   border-radius: 0.3rem;
   background-color: var(--background-color-tertiary);
 }
@@ -195,6 +195,11 @@ ol {
   }
   .string {
     color: var(--font-green);
+    display: inline;
+    font-weight: 400;
+  }
+  .comment {
+    color: var(--font-tertiary);
     font-weight: 400;
   }
 }
@@ -203,6 +208,7 @@ ol {
   line-height: 1.3rem;
   background-color: var(--background-color-secondary);
   padding: 1rem;
+  margin: 1rem 0;
   border-radius: 0.3rem;
   box-shadow: var(--important-tips-shadow);
 }
@@ -253,7 +259,7 @@ svg {
 
 .v-enter-active,
 .v-leave-active {
-  transition: opacity 0.4s ease;
+  transition: opacity 0.1s ease;
 }
 
 .v-enter-from,

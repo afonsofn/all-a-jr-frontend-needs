@@ -20,7 +20,7 @@ npm install -g node-firestore-import-export
 - Open a terminal and navigate to the directory where you want to save the exported JSON file. Make sure the appConfig.json file exists in the same directory as well.
 - Run the following command to export data from your Firestore database:
  ```bash
-npx -p node-firestore-import-export firestore-export -a appConfig.json -b backup.json
+npx -p node-firestore-import-export firestore-export -a appConfig.json -b backup.json -p
 ```
 - This command exports all data from your Firestore database and saves it to a JSON file named backup.json in the current directory.
 
@@ -69,7 +69,7 @@ npx -p node-firestore-import-export firestore-export -a appConfig.json -b backup
 - Open a terminal and navigate to the directory of the JSON file. Make sure the appConfig.json file exists in the same directory as well.
 - Run the following command to import data to your Firestore database:
 ```bash
-npx -p node-firestore-import-export firestore-import -a appConfig.json -b database.json -p
+npx -p node-firestore-import-export firestore-import -a appConfig.json -b database.json
 ```
 - This command import you JSON file and will update your database.
 - Be careful! This can easily overwrite or mess up your data if you import to the wrong location.

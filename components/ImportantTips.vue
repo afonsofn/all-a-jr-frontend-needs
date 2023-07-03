@@ -4,7 +4,7 @@
 
     <transition>
       <div v-if="open" class="tip-box">
-        <i><slot /></i>
+        <slot />
       </div>
     </transition>
   </section>

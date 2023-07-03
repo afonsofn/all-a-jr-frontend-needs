@@ -4,6 +4,25 @@ export const redirectIfNotLoggedIn = async () => {
   if (!user?.uid) useRouter().push("/");
 };
 
+export const fetchSectionsContent = async (contentNames: string[]) => {
+  try {
+    const promises = contentNames.map((name) =>
+      $fetch(`http://localhost:3000/api/content`, {
+        params: {
+          document: name,
+        },
+      })
+    );
+
+    const responses = await Promise.all(promises);
+
+    return responses;
+  } catch (error) {
+    exceptionsLogger(error, "composables/useFetchContent");
+    throw error;
+  }
+};
+
 export const exceptionsLogger = async (error: any, path: string) => {
   try {
     const errorMessage = `${path} \n ${JSON.stringify(
