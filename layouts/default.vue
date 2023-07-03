@@ -85,25 +85,25 @@ main {
       align-items: center;
       justify-content: flex-end;
       padding: 1rem;
+      z-index: 998;
+      background-image: linear-gradient(
+        to bottom,
+        var(--background-color),
+        rgba(0, 0, 0, 0)
+      );
+      backdrop-filter: blur(1px);
+      position: fixed;
     }
 
     .main-content {
       width: 100vw;
       max-width: 60rem;
-      margin: 0 auto;
+      margin: 4rem auto;
       padding: 0 5rem;
     }
 
     @media (max-width: 1050px) {
       header {
-        z-index: 998;
-        background-image: linear-gradient(
-          to bottom,
-          var(--background-color),
-          rgba(0, 0, 0, 0)
-        );
-        backdrop-filter: blur(1px);
-        position: fixed;
         padding: 1rem 1.5rem;
       }
 
