@@ -1,29 +1,15 @@
+import { User } from "firebase/auth";
+
 export const redirectIfNotLoggedIn = async () => {
-  const user: any = await $fetch("http://localhost:3000/api/user?check=true");
+  const user: User = await $fetch("http://localhost:3000/api/user?check=true");
 
   if (!user?.uid) useRouter().push("/");
 };
 
-export const fetchSectionsContent = async (contentNames: string[]) => {
-  try {
-    const promises = contentNames.map((name) =>
-      $fetch(`http://localhost:3000/api/content`, {
-        params: {
-          document: name,
-        },
-      })
-    );
-
-    const responses = await Promise.all(promises);
-
-    return responses;
-  } catch (error) {
-    exceptionsLogger(error, "composables/useFetchContent");
-    throw error;
-  }
-};
-
-export const exceptionsLogger = async (error: any, path: string) => {
+export const exceptionsLogger = async (
+  error: any,
+  path: string
+): Promise<void> => {
   try {
     const errorMessage = `${path} \n ${JSON.stringify(
       {

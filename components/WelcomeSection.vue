@@ -1,8 +1,8 @@
 <template>
-  <section v-if="welcomeContent">
+  <section v-if="welcomeContent" id="welcome">
     <h1 v-safe-html="welcomeContent.title"></h1>
 
-    <blockquote>{{ welcomeContent.description }}</blockquote>
+    <blockquote v-safe-html="welcomeContent.description"></blockquote>
 
     <ImportantTips>
       <p v-safe-html="welcomeContent.importantTips"></p>

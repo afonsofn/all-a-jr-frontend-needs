@@ -3,21 +3,26 @@
 
   <transition name="slide">
     <nav v-if="openNav">
-      <div class="links-wrapper">
+      <div class="nav-links-wrapper">
         <div
-          v-for="{ name, icon } in sections"
+          v-for="{ name, icon, id } in sections"
           :key="name"
           :class="{ selected: selectedSection === name }"
-          @click="selectSection(name)"
+          @click="selectSection(name, id)"
         >
           <component :is="icon" />
           <p>{{ name }}</p>
         </div>
       </div>
 
-      <DoubleChevronLeft class="close-mobile-menu" @click="openNav = false" />
+      <div class="other-links-wrapper">
+        <DoubleChevronLeft class="logout" @click="showLogoutModal = true" />
+        <DoubleChevronLeft class="close-mobile-menu" @click="openNav = false" />
+      </div>
     </nav>
   </transition>
+
+  <LogoutModal v-model="showLogoutModal" />
 </template>
 
 <script setup lang="ts">
@@ -34,26 +39,20 @@ import {
 } from "@/icons";
 
 const openNav = ref(false);
+const showLogoutModal = ref(false);
 const selectedSection = ref("Bem Vindo");
+
 const sections = [
-  { name: "Bem Vindo", icon: WelcomeIcon },
-  { name: "Terminal e Git", icon: TerminalIcon },
-  { name: "Html e Css", icon: HtmlIcon },
-  { name: "Javascript", icon: JavascriptIcon },
-  { name: "Css Avançado", icon: CssIcon },
-  { name: "React e TypeScript", icon: ReactIcon },
-  { name: "Próximos Passos...", icon: NextStepsIcon },
+  { name: "Bem Vindo", id: "welcome", icon: WelcomeIcon },
+  { name: "Terminal e Git", id: "terminal", icon: TerminalIcon },
+  { name: "Html e Css", id: "html", icon: HtmlIcon },
+  { name: "JavaScript", id: "javascript", icon: JavascriptIcon },
+  { name: "Css avançado", id: "css", icon: CssIcon },
+  { name: "React e TypeScript", id: "react", icon: ReactIcon },
+  { name: "Próximos Passos...", id: "next", icon: NextStepsIcon },
 ];
 
-const selectSection = (section: string) => {
-  selectedSection.value = section;
-
-  if (window.innerWidth > 1050) return;
-
-  setTimeout(() => (openNav.value = false), 100);
-};
-
-onMounted(() => {
+const shouldOpenSidebar = () => {
   const mediaQueryWatcher = window.matchMedia("(min-width: 1050px)");
 
   function handleWindowResize(event: MediaQueryListEvent) {
@@ -67,7 +66,56 @@ onMounted(() => {
   onUnmounted(() =>
     mediaQueryWatcher.removeEventListener("change", handleWindowResize)
   );
+};
+
+const selectSection = (section: string, id: string): void => {
+  turnOffScrollListener();
+
+  selectedSection.value = section;
+  scrollToSection(id);
+
+  if (window.innerWidth > 1050) return;
+
+  setTimeout(() => (openNav.value = false), 100);
+};
+
+const scrollToSection = (id: string): void => {
+  const targetElement = document.querySelector(`#${id}`) as HTMLElement;
+  const headerHeight = document.querySelector("header")?.offsetHeight || 0;
+
+  window.scrollTo({
+    top: targetElement.offsetTop - headerHeight,
+  });
+
+  setTimeout(turnOnScrollListener, 500);
+};
+
+const turnOnScrollListener = () =>
+  window.addEventListener("scroll", srollListener);
+
+const turnOffScrollListener = () =>
+  window.removeEventListener("scroll", srollListener);
+
+const srollListener = () => {
+  sections.forEach((section) => {
+    const targetElement = document.getElementById(section.id);
+
+    if (targetElement) {
+      const elementPosition = targetElement.getBoundingClientRect();
+
+      if (elementPosition.top <= 200) {
+        selectedSection.value = section.name;
+      }
+    }
+  });
+};
+
+onMounted(() => {
+  shouldOpenSidebar();
+  turnOnScrollListener();
 });
+
+onBeforeUnmount(() => turnOffScrollListener());
 </script>
 
 <style lang="scss" scoped>
@@ -93,7 +141,7 @@ nav {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  .links-wrapper {
+  .nav-links-wrapper {
     svg {
       width: 1.3rem;
       height: 1.3rem;
@@ -155,12 +203,21 @@ nav {
     }
   }
 
-  .close-mobile-menu {
-    display: none;
-    align-self: center;
-    width: 1.3rem;
-    height: 1.3rem;
-    cursor: pointer;
+  .other-links-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2rem;
+
+    .logout,
+    .close-mobile-menu {
+      width: 1.3rem;
+      height: 1.3rem;
+      cursor: pointer;
+    }
+    .close-mobile-menu {
+      display: none;
+    }
   }
 }
 

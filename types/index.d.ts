@@ -5,11 +5,15 @@ declare global {
     importantTips: string;
   }
 
+  interface NextStepsContent {
+    title: string;
+    description: string;
+  }
+
   interface LessonContent {
     title: string;
     steps: any[];
-    exercises?: { answer: string, question: string }[];
   }
 }
 
-export { WelcomeContent, LessonContent };
+export { WelcomeContent, NextStepsContent, LessonContent };

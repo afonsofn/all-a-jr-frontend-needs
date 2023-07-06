@@ -48,6 +48,7 @@ const toggleTheme = () => {
   display: inline-flex;
   flex-direction: row;
   align-items: center;
+  cursor: pointer;
 }
 .toggle-switch {
   margin: 0;

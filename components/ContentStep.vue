@@ -7,7 +7,7 @@
     </template>
 
     <ul v-if="isObject(step.steps)">
-      <JavascriptStep
+      <ContentStep
         v-for="(subStep, subStepIndex) in step.steps"
         :key="subStepIndex"
         :step="subStep"

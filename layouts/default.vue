@@ -61,6 +61,12 @@ body {
   font-size: 1rem;
   line-height: 1.4;
   font-weight: var(--main-font-weight);
+  scroll-behavior: smooth;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 body {
@@ -227,9 +233,13 @@ svg {
   }
 }
 
+div.line-space {
+  margin: 0.5rem 0;
+}
+
 @media (max-width: 620px) {
   main > .content-wrapper > .main-content {
-    padding: 4.1rem 1.5rem;
+    padding: 1rem 1.5rem;
   }
 
   h1 {
