@@ -1,17 +1,7 @@
 <template>
-  <main>
-    <TheSidebar />
-
-    <div class="content-wrapper">
-      <header>
-        <ThemeSwitcher />
-      </header>
-
-      <div class="main-content">
-        <slot />
-      </div>
-    </div>
-  </main>
+  <div>
+    <slot />
+  </div>
 </template>
 
 <style lang="scss">
@@ -79,47 +69,6 @@ a {
   text-decoration: none;
 }
 
-main {
-  display: flex;
-
-  .content-wrapper {
-    flex: 1;
-
-    header {
-      width: 100vw;
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      padding: 1rem;
-      z-index: 998;
-      background-image: linear-gradient(
-        to bottom,
-        var(--background-color),
-        rgba(0, 0, 0, 0)
-      );
-      backdrop-filter: blur(1px);
-      position: fixed;
-    }
-
-    .main-content {
-      width: 100vw;
-      max-width: 60rem;
-      margin: 4rem auto;
-      padding: 0 5rem;
-    }
-
-    @media (max-width: 1050px) {
-      header {
-        padding: 1rem 1.5rem;
-      }
-
-      .main-content {
-        padding: 4.1rem 5rem;
-      }
-    }
-  }
-}
-
 h1 {
   font-size: 2rem;
   font-weight: 400;
@@ -129,6 +78,11 @@ h1 {
 
   strong {
     font-weight: 700;
+  }
+
+  @media (max-width: 620px) {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
   }
 
   @media (max-width: 826px) {
@@ -235,17 +189,6 @@ svg {
 
 div.line-space {
   margin: 0.5rem 0;
-}
-
-@media (max-width: 620px) {
-  main > .content-wrapper > .main-content {
-    padding: 1rem 1.5rem;
-  }
-
-  h1 {
-    font-size: 1.5rem;
-    margin-bottom: 1.5rem;
-  }
 }
 
 // Animations

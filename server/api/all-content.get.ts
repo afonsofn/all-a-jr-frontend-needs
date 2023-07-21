@@ -1,11 +1,10 @@
 import { getCollection } from "../lib/firestore";
+import { handleError } from "../lib/utils";
 
-export default defineEventHandler(async (_event) => {
+export default defineEventHandler(async () => {
   try {
-    const docs = await getCollection("content");
-
-    return docs;
-  } catch (error: any) {
-    return error.message;
+    return await getCollection("content");
+  } catch (error) {
+    return handleError(error);
   }
 });

@@ -7,35 +7,36 @@ import {
 } from "firebase/auth";
 
 import { firebaseAuth } from "./firebase";
+import { handleError } from "./utils";
 
 export const createUser = async (
   email: string,
   password: string
-): Promise<void> => {
-  await createUserWithEmailAndPassword(firebaseAuth, email, password);
+): Promise<void | string> => {
+  try {
+    await createUserWithEmailAndPassword(firebaseAuth, email, password);
+  } catch (error) {
+    return handleError(error);
+  }
 };
 
-export const getUserInfo = (): User | null => {
-  return firebaseAuth.currentUser;
-};
+export const getUserInfo = (): User | null => firebaseAuth.currentUser;
 
 export const login = async (
   email: string,
   password: string
 ): Promise<UserCredential | unknown> => {
   try {
-    const user = await signInWithEmailAndPassword(
-      firebaseAuth,
-      email,
-      password
-    );
-
-    return user;
+    return await signInWithEmailAndPassword(firebaseAuth, email, password);
   } catch (error) {
-    return error;
+    return handleError(error);
   }
 };
 
-export const logout = async (): Promise<void> => {
-  await signOut(firebaseAuth);
+export const logout = async (): Promise<void | string> => {
+  try {
+    await signOut(firebaseAuth);
+  } catch (error) {
+    return handleError(error);
+  }
 };

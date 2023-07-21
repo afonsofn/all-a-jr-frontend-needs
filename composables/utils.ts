@@ -1,11 +1,3 @@
-import { User } from "firebase/auth";
-
-export const redirectIfNotLoggedIn = async () => {
-  const user: User = await $fetch("http://localhost:3000/api/user?check=true");
-
-  if (!user?.uid) useRouter().push("/");
-};
-
 export const exceptionsLogger = async (
   error: any,
   path: string

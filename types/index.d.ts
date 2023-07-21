@@ -12,7 +12,7 @@ declare global {
 
   interface LessonContent {
     title: string;
-    steps: any[];
+    steps: T[];
   }
 }
 

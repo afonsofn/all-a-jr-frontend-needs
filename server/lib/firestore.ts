@@ -1,7 +1,5 @@
 import {
   collection,
-  DocumentReference,
-  DocumentSnapshot,
   updateDoc,
   getDocs,
   getDoc,
@@ -10,34 +8,32 @@ import {
   setDoc,
 } from "firebase/firestore";
 import { firestoreDb } from "./firebase";
+import { handleError } from "./utils";
 
 export const getCollection = async (collectionName: string) => {
-  const contentRef = collection(firestoreDb, collectionName);
-  const contentRaw = await getDocs(contentRef);
+  try {
+    const documents = await getDocs(collection(firestoreDb, collectionName));
 
-  const contentData = Array.from(contentRaw.docs).map((doc) => {
-    return {
+    return Array.from(documents.docs).map((doc) => ({
       ...doc.data(),
       id: doc.id,
-    };
-  });
-
-  return contentData;
+    }));
+  } catch (error) {
+    return handleError(error);
+  }
 };
 
 export const getDocument = async (
   collectionName: string,
   documentId: string
 ) => {
-  const contentRef: DocumentReference = doc(
-    firestoreDb,
-    collectionName,
-    documentId
-  );
-  const contentRaw: DocumentSnapshot = await getDoc(contentRef);
-  const content = contentRaw.data();
+  try {
+    const document = await getDoc(doc(firestoreDb, collectionName, documentId));
 
-  return content;
+    return document.data();
+  } catch (error) {
+    return handleError(error);
+  }
 };
 
 export const postDocument = async (

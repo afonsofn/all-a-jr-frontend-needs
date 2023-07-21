@@ -1,13 +1,12 @@
 import { getDocument } from "../lib/firestore";
+import { handleError } from "../lib/utils";
 
 export default defineEventHandler(async (event) => {
   try {
     const { document } = getQuery(event);
 
-    const docs = await getDocument("content", document as string);
-
-    return docs;
-  } catch (error: any) {
-    return error.message;
+    return await getDocument("content", document as string);
+  } catch (error) {
+    return handleError(error);
   }
 });

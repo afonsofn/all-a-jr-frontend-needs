@@ -30,9 +30,7 @@ const logout = async () => {
   try {
     await $fetch("http://localhost:3000/api/user", {
       method: "POST",
-      params: {
-        isLogout: true,
-      },
+      params: { isLogout: true },
     });
 
     audio.value.play();

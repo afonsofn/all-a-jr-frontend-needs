@@ -1,7 +1,9 @@
-export default defineNuxtRouteMiddleware(async (_to, from) => {
-  const user: any = await $fetch("http://localhost:3000/api/user?check=true");
+import { User } from "firebase/auth";
 
-  if (user?.uid) return;
+export default defineNuxtRouteMiddleware(async (_to, from) => {
+  const user: User = await $fetch("http://localhost:3000/api/user?check=true");
+
+  if (user.uid) return;
 
   if (from.path !== "/") navigateTo("/");
 });

@@ -1,5 +1,6 @@
 import { getDocument } from "../lib/firestore";
 import { getUserInfo } from "../lib/auth";
+import { handleError } from "../lib/utils";
 
 export default defineEventHandler(async (event) => {
   try {
@@ -7,11 +8,8 @@ export default defineEventHandler(async (event) => {
 
     if (check) return getUserInfo();
 
-    const user = await getDocument("users", document as string);
-
-    return user;
+    return await getDocument("users", document as string);
   } catch (error) {
-    if (error instanceof Error) return error.message;
-    return String(error);
+    return handleError(error);
   }
 });
