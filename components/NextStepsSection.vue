@@ -1,8 +1,8 @@
 <template>
   <section v-if="nextStepsContent" id="next">
-    <h2 v-safe-html="nextStepsContent.title"></h2>
+    <h2 v-html="nextStepsContent.title"></h2>
 
-    <p v-safe-html="nextStepsContent.description"></p>
+    <div v-html="nextStepsContent.description"></div>
   </section>
 </template>
 

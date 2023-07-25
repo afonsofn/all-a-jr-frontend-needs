@@ -1,16 +1,28 @@
 <template>
-  <section>
-    <h1>Hi 🥸</h1>
+  <main>
+    <TheSidebar />
 
-    <AuthForm />
-  </section>
+    <div class="main-wrapper">
+      <header>
+        <ThemeSwitcher />
+      </header>
+
+      <section class="roadmap">
+        <WelcomeSection />
+        <ContentSection />
+        <NextStepsSection />
+      </section>
+
+      <footer>
+        <p>
+          Created and developed by
+          <a href="https://www.linkedin.com/in/afonsofn/" target="_blank">
+            <code>@raff</code>
+          </a>
+        </p>
+      </footer>
+    </div>
+  </main>
 </template>
 
-<style scoped>
-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 3rem;
-}
-</style>
+<style src="@/style.scss" />

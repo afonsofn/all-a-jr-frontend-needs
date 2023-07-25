@@ -1,12 +1,4 @@
-import {
-  collection,
-  updateDoc,
-  getDocs,
-  getDoc,
-  deleteDoc,
-  doc,
-  setDoc,
-} from "firebase/firestore";
+import { collection, getDocs, getDoc, doc, setDoc } from "firebase/firestore";
 import { firestoreDb } from "./firebase";
 import { handleError } from "./utils";
 
@@ -44,21 +36,4 @@ export const postDocument = async (
   await setDoc(doc(firestoreDb, collectionName, documentId), data, {
     merge: true,
   });
-};
-
-export const patchDocument = async (
-  collectionName: string,
-  documentId: string,
-  data: any
-) => {
-  await updateDoc(doc(firestoreDb, collectionName, documentId), data, {
-    merge: true,
-  });
-};
-
-export const deleteDocument = async (
-  collectionName: string,
-  documentId: string
-) => {
-  return await deleteDoc(doc(firestoreDb, collectionName, documentId));
 };

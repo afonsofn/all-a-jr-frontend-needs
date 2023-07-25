@@ -1,14 +1,24 @@
 export default defineNuxtConfig({
+  app: {
+    head: {
+      title: "Tudo que você precisa para se tornar um Dev FrontEnd Jr",
+      meta: [
+        { charset: "utf-8" },
+        { name: "viewport", content: "width=device-width, initial-scale=1" },
+      ],
+      link: [{ rel: "icon", type: "image/svg+xml", href: "/favicon.svg" }],
+    },
+  },
   devtools: { enabled: true },
   runtimeConfig: {
     public: {
-      apiKey: "AIzaSyA9csunqsbZ2NmXLT51IGfjW0S4qvfk5aQ",
-      authDomain: "all-a-jr-frontend-needs.firebaseapp.com",
-      projectId: "all-a-jr-frontend-needs",
-      storageBucket: "all-a-jr-frontend-needs.appspot.com",
-      messagingSenderId: "833309274820",
-      appId: "1:833309274820:web:1fc512eb4642282cbb4f91",
-      measurementId: "G-1MXT4BXNW0",
+      apiKey: import.meta.env.API_KEY,
+      authDomain: import.meta.env.AUTH_DOMAIN,
+      projectId: import.meta.env.PROJECT_ID,
+      storageBucket: import.meta.env.STORAGE_BUCKET,
+      messagingSenderId: import.meta.env.MESSAGING_SENDER_ID,
+      appId: import.meta.env.APP_ID,
+      measurementId: import.meta.env.MEASUREMENT_ID,
     },
   },
   modules: [

@@ -1,10 +1,3 @@
-<template>
-  <div>
-    <slot />
-  </div>
-</template>
-
-<style lang="scss">
 :root {
   --font-primary: #c0bed4;
   --font-secondary: #76738e;
@@ -20,7 +13,7 @@
   --main-font-weight: 300;
   --important-tips-shadow: 0 0 0 0 rgba(92, 92, 92, 0);
 }
-
+  
 :root[data-theme="light"] {
   --font-primary: #424242;
   --font-secondary: #76738e;
@@ -36,7 +29,7 @@
   --main-font-weight: 400;
   --important-tips-shadow: 3px 3px 15px 0 rgba(92, 92, 92, 0.143);
 }
-
+  
 * {
   box-sizing: border-box;
   padding: 0;
@@ -52,13 +45,8 @@ body {
   line-height: 1.4;
   font-weight: var(--main-font-weight);
   scroll-behavior: smooth;
-  -webkit-user-select: none;
-  -webkit-touch-callout: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
 }
-
+  
 body {
   color: var(--font-primary);
   background-color: var(--background-color);
@@ -68,7 +56,7 @@ a {
   color: inherit;
   text-decoration: none;
 }
-
+  
 h1 {
   font-size: 2rem;
   font-weight: 400;
@@ -79,7 +67,7 @@ h1 {
   strong {
     font-weight: 700;
   }
-
+  
   @media (max-width: 620px) {
     font-size: 1.5rem;
     margin-bottom: 1.5rem;
@@ -89,7 +77,7 @@ h1 {
     max-width: 100%;
   }
 }
-
+  
 h2 {
   font-size: 1.5rem;
   font-weight: 600;
@@ -104,7 +92,7 @@ blockquote {
 strong {
   font-weight: 600;
 }
-
+  
 code {
   color: var(--font-red);
   font-weight: 500;
@@ -129,14 +117,14 @@ ul > li {
     color: #5c80ff;
   }
 }
-
+  
 ol {
   padding-left: 1.5rem;
   li {
     margin-bottom: 0.3rem;
   }
 }
-
+  
 .block-code {
   border-radius: 0.3rem;
   padding: 1rem 1.5rem;
@@ -163,7 +151,7 @@ ol {
     font-weight: 400;
   }
 }
-
+  
 .tip-box {
   line-height: 1.3rem;
   background-color: var(--background-color-secondary);
@@ -186,9 +174,67 @@ svg {
     animation: close-toggle 0.15s linear forwards;
   }
 }
-
+  
 div.line-space {
   margin: 0.5rem 0;
+}
+  
+main {
+  display: flex;
+
+  .main-wrapper {
+    flex: 1;
+
+    header {
+      width: 100vw;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding: 1rem;
+      z-index: 998;
+      background-image: linear-gradient(
+        to bottom,
+        var(--background-color),
+        rgba(0, 0, 0, 0)
+      );
+      backdrop-filter: blur(1px);
+      position: fixed;
+    }
+
+    .roadmap {
+      width: 100vw;
+      max-width: 60rem;
+      margin: 4rem auto;
+      padding: 0 5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    footer {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    @media (max-width: 1050px) {
+      header {
+        padding: 1rem 1.5rem;
+      }
+
+      .roadmap {
+        padding: 4.1rem 5rem;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .roadmap {
+        padding: 1rem 1.5rem;
+        gap: 1rem;
+      }
+    }
+  }
 }
 
 // Animations
@@ -209,7 +255,7 @@ div.line-space {
     transform: rotate(0deg);
   }
 }
-
+  
 .v-enter-active,
 .v-leave-active {
   transition: opacity 0.1s ease;
@@ -229,7 +275,7 @@ div.line-space {
 .slide-leave-to {
   transform: translateX(-100%);
 }
-
+  
 // Scrollbar Style
 ::-webkit-scrollbar {
   width: 0.3rem;
@@ -248,4 +294,3 @@ div.line-space {
 ::-webkit-scrollbar-thumb:hover {
   background: var(--font-secondary);
 }
-</style>

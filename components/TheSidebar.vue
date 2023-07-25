@@ -15,14 +15,9 @@
         </div>
       </div>
 
-      <div class="other-links-wrapper">
-        <DoubleChevronLeft class="logout" @click="showLogoutModal = true" />
-        <DoubleChevronLeft class="close-mobile-menu" @click="openNav = false" />
-      </div>
+      <DoubleChevronLeft class="close-mobile-menu" @click="openNav = false" />
     </nav>
   </transition>
-
-  <LogoutModal v-model="showLogoutModal" />
 </template>
 
 <script setup lang="ts">
@@ -39,7 +34,6 @@ import {
 } from "@/icons";
 
 const openNav = ref(false);
-const showLogoutModal = ref(false);
 const selectedSection = ref("Bem Vindo");
 
 const sections = [
@@ -159,9 +153,12 @@ nav {
       p {
         display: none;
         position: absolute;
-        width: 200%;
+        white-space: nowrap;
+        padding: 0.2rem 0.5rem;
+        border-radius: 1rem;
         left: 120%;
         font-size: 0.8rem;
+        background-color: var(--background-color-secondary);
         color: var(--font-secondary);
       }
 
@@ -203,21 +200,12 @@ nav {
     }
   }
 
-  .other-links-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1.2rem;
-
-    .logout,
-    .close-mobile-menu {
-      width: 1.3rem;
-      height: 1.3rem;
-      cursor: pointer;
-    }
-    .close-mobile-menu {
-      display: none;
-    }
+  .close-mobile-menu {
+    display: none;
+    align-self: center;
+    width: 1.3rem;
+    height: 1.3rem;
+    cursor: pointer;
   }
 }
 

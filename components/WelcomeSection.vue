@@ -1,11 +1,11 @@
 <template>
   <section v-if="welcomeContent" id="welcome">
-    <h1 v-safe-html="welcomeContent.title"></h1>
+    <h1 v-html="welcomeContent.title"></h1>
 
-    <blockquote v-safe-html="welcomeContent.description"></blockquote>
+    <blockquote v-html="welcomeContent.description"></blockquote>
 
     <ImportantTips>
-      <p v-safe-html="welcomeContent.importantTips"></p>
+      <p v-html="welcomeContent.importantTips"></p>
     </ImportantTips>
   </section>
 </template>

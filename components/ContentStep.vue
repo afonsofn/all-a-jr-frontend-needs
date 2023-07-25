@@ -1,5 +1,5 @@
 <template>
-  <div v-if="isTipBox(step)" v-safe-html="step"></div>
+  <div v-if="isTipBox(step)" v-html="step"></div>
 
   <ContentToggle v-else-if="step.title" class="recap">
     <template #title>
@@ -14,10 +14,10 @@
       />
     </ul>
 
-    <p v-else v-safe-html="step.steps"></p>
+    <p v-else v-html="step.steps"></p>
   </ContentToggle>
 
-  <li v-else v-safe-html="step"></li>
+  <li v-else v-html="step"></li>
 </template>
 
 <script setup lang="ts">
