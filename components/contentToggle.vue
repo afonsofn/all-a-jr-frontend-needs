@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div :class="{ 'margin-bottom': hasMarginBottom }">
     <p @click="openToggle()">
       <ChevronRight :class="turnIcon" />
       <slot name="title"></slot>
@@ -14,6 +14,15 @@
 <script setup lang="ts">
 import { ChevronRight } from "@/icons";
 
+withDefaults(
+  defineProps<{
+    hasMarginBottom?: boolean;
+  }>(),
+  {
+    hasMarginBottom: false,
+  }
+);
+
 const open = ref(false);
 const turnIcon = ref("");
 
@@ -24,6 +33,10 @@ const openToggle = () => {
 </script>
 
 <style lang="scss" scoped>
+.margin-bottom {
+  margin-bottom: 0.3rem;
+}
+
 p {
   cursor: pointer;
   display: flex;

@@ -1,7 +1,7 @@
 <template>
   <div v-if="isTipBox(step)" v-html="step"></div>
 
-  <ContentToggle v-else-if="step.title" class="recap">
+  <ContentToggle v-else-if="step.title" :has-margin-bottom="true">
     <template #title>
       <strong>{{ step.title }}</strong>
     </template>
@@ -30,26 +30,3 @@ const isTipBox = (step: LessonContent | string) =>
 const isObject = (steps: (LessonContent | string)[]) =>
   typeof steps === "object";
 </script>
-
-<style lang="scss">
-.recap {
-  margin-bottom: 0.3rem;
-
-  li:not(ol > li) {
-    position: relative;
-    padding-left: 1.4rem;
-    margin-left: 0.4rem;
-    margin-bottom: 0.3rem;
-    list-style: none;
-
-    &:before {
-      content: "⏺";
-      position: absolute;
-      top: 4px;
-      left: 0;
-      font-size: 0.7rem;
-      color: #5c80ff;
-    }
-  }
-}
-</style>
