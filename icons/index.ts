@@ -1,5 +1,4 @@
 import ChevronRight from "./ChevronRight.vue";
-import DoubleChevronLeft from "./DoubleChevronLeft.vue";
 import MenuIcon from "./Menu.vue";
 import WelcomeIcon from "./Welcome.vue";
 import TerminalIcon from "./Terminal.vue";
@@ -11,7 +10,6 @@ import NextStepsIcon from "@/icons/NextSteps.vue";
 
 export {
   ChevronRight,
-  DoubleChevronLeft,
   MenuIcon,
   WelcomeIcon,
   TerminalIcon,
