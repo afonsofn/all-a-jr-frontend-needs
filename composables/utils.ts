@@ -1,3 +1,7 @@
+// const {
+//   public: { apiDomain },
+// } = useRuntimeConfig();
+
 export const exceptionsLogger = async (
   error: any,
   path: string
@@ -17,10 +21,12 @@ export const exceptionsLogger = async (
       2
     )}`;
 
-    await $fetch("http://localhost:3000/api/logger", {
-      method: "POST",
-      body: { errorMessage },
-    });
+    await console.log(errorMessage);
+
+    // await $fetch(`${apiDomain}/api/logger`, {
+    //   method: "POST",
+    //   body: { errorMessage },
+    // });
   } catch (error) {
     // eslint-disable-next-line no-console
     console.log("erro no exceptionsLogger kkkkk");

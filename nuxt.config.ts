@@ -19,6 +19,7 @@ export default defineNuxtConfig({
       messagingSenderId: import.meta.env.MESSAGING_SENDER_ID,
       appId: import.meta.env.APP_ID,
       measurementId: import.meta.env.MEASUREMENT_ID,
+      apiDomain: import.meta.env.API_DOMAIN,
     },
   },
   modules: [

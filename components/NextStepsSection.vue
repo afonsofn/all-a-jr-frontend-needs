@@ -9,16 +9,16 @@
 <script setup lang="ts">
 import { NextStepsContent } from "@/types/index";
 
+const {
+  public: { apiDomain },
+} = useRuntimeConfig();
+
 const nextStepsContent = ref<NextStepsContent>();
 
 try {
-  const response = await $fetch("http://localhost:3000/api/content", {
-    params: {
-      document: "nextSteps",
-    },
+  nextStepsContent.value = await $fetch(`${apiDomain}/api/content`, {
+    params: { document: "nextSteps" },
   });
-
-  nextStepsContent.value = response as NextStepsContent;
 } catch (error) {
   exceptionsLogger(error, "components/NextStepsSection");
 }

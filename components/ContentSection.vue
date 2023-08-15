@@ -25,6 +25,10 @@
 </template>
 
 <script setup lang="ts">
+const {
+  public: { apiDomain },
+} = useRuntimeConfig();
+
 const [
   terminalAndGitContent,
   htmlAndCssContent,
@@ -34,7 +38,7 @@ const [
 ] = await Promise.all(
   ["terminalAndGit", "htmlAndCss", "javascript", "advancedCss", "react"].map(
     (name) =>
-      $fetch(`http://localhost:3000/api/content`, {
+      $fetch(`${apiDomain}/api/content`, {
         params: { document: name },
       })
   )

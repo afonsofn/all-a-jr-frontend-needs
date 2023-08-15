@@ -13,16 +13,16 @@
 <script setup lang="ts">
 import { WelcomeContent } from "@/types/index";
 
+const {
+  public: { apiDomain },
+} = useRuntimeConfig();
+
 const welcomeContent = ref<WelcomeContent>();
 
 try {
-  const response = await $fetch("http://localhost:3000/api/content", {
-    params: {
-      document: "welcome",
-    },
+  welcomeContent.value = await $fetch(`${apiDomain}/api/content`, {
+    params: { document: "welcome" },
   });
-
-  welcomeContent.value = response as WelcomeContent;
 } catch (error) {
   exceptionsLogger(error, "components/WelcomeSection");
 }
