@@ -20,6 +20,12 @@
             <code>@raff</code>
           </a>
         </p>
+        <p>
+          Designed by
+          <a href="https://www.linkedin.com/in/marianavida/" target="_blank">
+            <code>@mari</code>
+          </a>
+        </p>
       </footer>
     </div>
   </main>
