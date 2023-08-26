@@ -1,6 +1,6 @@
 <template>
   <section>
-    <p @click="open = !open">💡 Dicas Importantes</p>
+    <p @click="open = !open">💡 {{ importantTipsTitle }}</p>
 
     <transition>
       <div v-if="open" class="tip-box">
@@ -12,6 +12,12 @@
 
 <script setup lang="ts">
 const open = ref(false);
+const importantTipsTitle = ref("");
+
+onMounted(
+  () =>
+    (importantTipsTitle.value = contentTitleTranslations.value.importantTips)
+);
 </script>
 
 <style lang="scss" scoped>

@@ -3,15 +3,15 @@
     <MenuIcon class="mobile-menu" @click="openNav = true" />
 
     <transition name="slide">
-      <nav v-if="openNav">
+      <nav v-if="openNav && sections?.length">
         <div
-          v-for="{ name, icon, id } in sections"
-          :key="name"
-          :class="{ selected: selectedSection === name }"
-          @click="selectSection(name, id)"
+          v-for="section in sections"
+          :key="section.name"
+          :class="{ selected: selectedSection === section.name }"
+          @click="selectSection(section.name, section.id)"
         >
-          <component :is="icon" />
-          <p>{{ name }}</p>
+          <component :is="section.icon" />
+          <p>{{ section.name }}</p>
         </div>
       </nav>
     </transition>
@@ -19,31 +19,14 @@
 </template>
 
 <script setup lang="ts">
-import {
-  MenuIcon,
-  WelcomeIcon,
-  TerminalIcon,
-  HtmlIcon,
-  JavascriptIcon,
-  CssIcon,
-  ReactIcon,
-  NextStepsIcon,
-} from "@/icons";
+import { MenuIcon } from "@/icons";
+
+const sections = useState<RoadmapSections[]>("roadmapSections");
 
 const openNav = ref(false);
 const scrollTimer = ref<ReturnType<typeof setTimeout>>();
 const selectRef = ref<HTMLElement>();
-const selectedSection = ref("Bem Vindo");
-
-const sections = [
-  { name: "Bem Vindo", id: "welcome", icon: WelcomeIcon },
-  { name: "Terminal e Git", id: "terminal", icon: TerminalIcon },
-  { name: "Html e Css", id: "html", icon: HtmlIcon },
-  { name: "JavaScript", id: "javascript", icon: JavascriptIcon },
-  { name: "Css avançado", id: "css", icon: CssIcon },
-  { name: "React e TypeScript", id: "react", icon: ReactIcon },
-  { name: "Próximos Passos...", id: "next", icon: NextStepsIcon },
-];
+const selectedSection = ref("");
 
 const selectSection = (section: string, id: string): void => {
   turnOffScrollListener();
@@ -73,7 +56,7 @@ const turnOffScrollListener = () =>
   window.removeEventListener("scroll", srollListener);
 
 const srollListener = () => {
-  sections.forEach((section) => {
+  sections.value.forEach((section) => {
     const targetElement = document.getElementById(section.id);
 
     if (targetElement) {
@@ -113,6 +96,13 @@ const manageSidebarBehavior = () => {
     mediaQueryWatcher.removeEventListener("change", handleWindowResize);
   });
 };
+
+watch(
+  () => sections.value,
+  () => {
+    if (sections.value) selectedSection.value = sections.value[0]?.name;
+  }
+);
 
 onMounted(() => {
   manageSidebarBehavior();

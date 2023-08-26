@@ -13,19 +13,11 @@
 <script setup lang="ts">
 import { WelcomeContent } from "@/types/index";
 
-const {
-  public: { apiDomain },
-} = useRuntimeConfig();
-
-const welcomeContent = ref<WelcomeContent>();
-
-try {
-  welcomeContent.value = await $fetch(`${apiDomain}/api/content`, {
-    params: { document: "welcome" },
-  });
-} catch (error) {
-  exceptionsLogger(error, "components/WelcomeSection");
-}
+const welcomeContent = computed(() => {
+  return (useState<RoadmapSections[]>("roadmapSections").value?.find(
+    (section) => section.id === "welcome"
+  )?.content || {}) as WelcomeContent;
+});
 </script>
 
 <style scoped lang="scss">

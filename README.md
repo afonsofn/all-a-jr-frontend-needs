@@ -1,63 +1,46 @@
-# Nuxt 3 Minimal Starter
+# Everything You Need to Become a Dev FrontEnd Jr
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+## Description
 
-## Setup
+This roadmap was designed to guide aspiring front-end developers who choose the self-taught path. It offers a detailed and comprehensive approach for those who don't wish to invest in expensive courses but still want to be prepared for Junior Frontend Developer positions. The goal is to simplify learning by highlighting what's essential and what can be postponed, and we hope this guide contributes to your success in the tech world.
 
-Make sure to install the dependencies:
+## Project Setup
 
+### Prerequisites
+
+- Node 16
+- Yarn (or npm)
+
+### Installation & Run
+
+1. Clone the repository:
 ```bash
-# npm
-npm install
-
-# pnpm
-pnpm install
-
-# yarn
+git clone git@github.com:afonsofn/all-a-jr-frontend-needs.git
+```
+2. Go to folder:
+```bash
+cd all-a-jr-frontend-needs
+```
+3. Install the dependencies:
+```bash
 yarn install
 ```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
+4. Run the project:
 ```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm run dev
-
-# yarn
 yarn dev
 ```
 
-## Production
+## Technologies Used
 
-Build the application for production:
+- [Nuxt 3](https://nuxt.com/)
+- [Firebase](https://firebase.google.com/)
+- [Sass](https://sass-lang.com/)
+- [TypeScript](https://www.typescriptlang.org/)
 
-```bash
-# npm
-npm run build
+## Contribution
 
-# pnpm
-pnpm run build
+Feel free to contribute to this project. Open an issue or submit a pull request.
 
-# yarn
-yarn build
-```
+## License
 
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm run preview
-
-# yarn
-yarn preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+[MIT](LICENSE)

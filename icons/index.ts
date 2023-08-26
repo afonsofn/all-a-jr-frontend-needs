@@ -8,14 +8,14 @@ import CssIcon from "./Css.vue";
 import ReactIcon from "./React.vue";
 import NextStepsIcon from "@/icons/NextSteps.vue";
 
-export {
-  ChevronRight,
-  MenuIcon,
-  WelcomeIcon,
-  TerminalIcon,
-  HtmlIcon,
-  JavascriptIcon,
-  CssIcon,
-  ReactIcon,
-  NextStepsIcon,
+export { ChevronRight, MenuIcon };
+
+export const contentIcons = {
+  welcome: WelcomeIcon,
+  terminalAndGit: TerminalIcon,
+  htmlAndCss: HtmlIcon,
+  javascript: JavascriptIcon,
+  advancedCss: CssIcon,
+  react: ReactIcon,
+  nextSteps: NextStepsIcon,
 };

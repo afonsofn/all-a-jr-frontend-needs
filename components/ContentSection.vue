@@ -5,10 +5,10 @@
     :key="index"
     class="content-wrapper"
   >
-    <h2>{{ section.title }}</h2>
+    <h2>{{ section.name }}</h2>
 
     <ContentToggle
-      v-for="(content, contentIndex) in (section.content as LessonContent[])"
+      v-for="(content, contentIndex) in section.content"
       :key="contentIndex"
     >
       <template #title>{{ content.title }}</template>
@@ -25,52 +25,13 @@
 </template>
 
 <script setup lang="ts">
-const {
-  public: { apiDomain },
-} = useRuntimeConfig();
+const notContentSections = ["welcome", "nextSteps"];
 
-const [
-  terminalAndGitContent,
-  htmlAndCssContent,
-  javascriptContent,
-  advancedCssContent,
-  reactContent,
-] = await Promise.all(
-  ["terminalAndGit", "htmlAndCss", "javascript", "advancedCss", "react"].map(
-    (name) =>
-      $fetch(`${apiDomain}/api/content`, {
-        params: { document: name },
-      })
-  )
-);
-
-const roadmapSections = [
-  {
-    title: "Terminal e Git",
-    id: "terminal",
-    content: terminalAndGitContent,
-  },
-  {
-    title: "Html e Css",
-    id: "html",
-    content: htmlAndCssContent,
-  },
-  {
-    title: "JavaScript",
-    id: "javascript",
-    content: javascriptContent,
-  },
-  {
-    title: "Css avançado",
-    id: "css",
-    content: advancedCssContent,
-  },
-  {
-    title: "React e TypeScript",
-    id: "react",
-    content: reactContent,
-  },
-];
+const roadmapSections = computed(() => {
+  return useState<RoadmapSections[]>("roadmapSections").value?.filter(
+    (section) => !notContentSections.includes(section.id)
+  );
+});
 </script>
 
 <style scoped lang="scss">

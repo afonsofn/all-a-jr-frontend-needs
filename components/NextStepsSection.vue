@@ -1,5 +1,5 @@
 <template>
-  <section v-if="nextStepsContent" id="next">
+  <section v-if="nextStepsContent" id="nextSteps">
     <h2 v-html="nextStepsContent.title"></h2>
 
     <div v-html="nextStepsContent.description"></div>
@@ -9,19 +9,11 @@
 <script setup lang="ts">
 import { NextStepsContent } from "@/types/index";
 
-const {
-  public: { apiDomain },
-} = useRuntimeConfig();
-
-const nextStepsContent = ref<NextStepsContent>();
-
-try {
-  nextStepsContent.value = await $fetch(`${apiDomain}/api/content`, {
-    params: { document: "nextSteps" },
-  });
-} catch (error) {
-  exceptionsLogger(error, "components/NextStepsSection");
-}
+const nextStepsContent = computed(() => {
+  return (useState<RoadmapSections[]>("roadmapSections").value?.find(
+    (section) => section.id === "nextSteps"
+  )?.content || {}) as NextStepsContent;
+});
 </script>
 
 <style scoped lang="scss">

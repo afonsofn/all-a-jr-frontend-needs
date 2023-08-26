@@ -3,10 +3,17 @@ import { handleError } from "../lib/utils";
 
 export default defineEventHandler(async (event) => {
   try {
-    const { document } = getQuery(event);
+    const { document, lang } = getQuery(event);
 
-    return await getDocument("content", document as string);
+    const collection = ["pt-BR", "pt-PT"].includes(lang as string)
+      ? "content"
+      : "contentEnglish";
+
+    return (await getDocument(
+      collection,
+      document as string
+    )) as LessonContent[];
   } catch (error) {
-    return handleError(error);
+    handleError(error);
   }
 });
